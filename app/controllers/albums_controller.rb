@@ -1,7 +1,7 @@
 class AlbumsController < ApplicationController
 
   def index
-    @albums = Album.all
+    @albums = Album.all.order(:name)
   end
 
   def show
@@ -9,7 +9,7 @@ class AlbumsController < ApplicationController
   end
 
   def new
-    @albums = Album.new
+    @album = Album.new
   end
 
   def create
@@ -17,6 +17,7 @@ class AlbumsController < ApplicationController
     if @album.save
       redirect_to albums_url
     else
+      flash.now[:errors] = @album.errors.full_messages
       render :new
     end
   end

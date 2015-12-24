@@ -1,15 +1,19 @@
 <h3>Add a New Album</h3>
 
 <form action="<%= albums_url %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <label>Name:
-    <input type="text" name="album[name]" value=""><br><br>
+    <input type="text" name="album[name]" value="<%= @album.name %>" autofocus><br><br>
   </label>
 
   <label>Band:
     <select name="album[band_id]">
       <option></option>
       <% Band.all.each do |band| %>
-      <option value="<%= band.id %>"><%= band.name %></option>
+        <option value="<%= band.id %>"
+            <%= "selected" if band == @album.band %>>
+            <%= band.name %>
+        </option>
       <% end %>
     </select><br><br>
   </label>
@@ -18,7 +22,8 @@
     <% Album::ALBUM_TYPES.each do |type_of_album| %>
       <input type="radio"
             name="album[album_type]"
-            value="<%= type_of_album %>">
+            value="<%= type_of_album %>"
+            <%= "selected" if type_of_album == @album.album_type%>>
             <%= type_of_album.upcase %>
     <% end %>
   </label><br><br>

@@ -1,0 +1,21 @@
+<h>All the Albums!</h3>
+
+  <% @albums.each do |album| %>
+  <table>
+    <tr>
+      <th>Name:</th>
+      <td><%= album.name %></td>
+    </tr>
+
+    <tr>
+      <th>Band Name:</th>
+      <td><%= album.band.name %></td>
+    </tr>
+
+    <tr>
+      <th>Type:</th>
+      <td><%= album.album_type.upcase %></td>
+    </tr>
+    </table>
+    <br><br>
+  <% end %>
