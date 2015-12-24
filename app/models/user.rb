@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   #because it was not given a session_token yet
   after_initialize :ensure_session_token
 
+  #Note: any attribute can be validated (not just columns)
   validates :email, :session_token, presence: true
   validates :password_digest, presence: { message: "Password cannot be blank"}
   validates :password, length: { minimum: 6, allow_nil: true }
@@ -21,6 +22,9 @@ class User < ActiveRecord::Base
     self.session_token
   end
 
+  #instance variable @password is used
+  #to perform the validation on it, since it is not a column in DB
+  #The attr_reader allows the validation to read the value
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
