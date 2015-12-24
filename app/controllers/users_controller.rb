@@ -7,8 +7,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      new_token = @user.reset_session_token!
-      session[:session_token] = new_token
+      login_user(@user)
       redirect_to user_url(@user)
     else
       fail
