@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   attr_reader :password
-  validates: :email, :password_digest, :session_token, presence: true
+  validates :email, :password_digest, :session_token, presence: true
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64
