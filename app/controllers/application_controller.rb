@@ -7,4 +7,12 @@ class ApplicationController < ActionController::Base
     new_token = user.reset_session_token!
     session[:session_token] = new_token
   end
+
+  def current_user
+    User.find_by_session_token(session[:session_token])
+  end
+
+  def logged_in?
+    current_user ? true : false
+  end
 end
