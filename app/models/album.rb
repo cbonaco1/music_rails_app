@@ -15,6 +15,8 @@ class Album < ActiveRecord::Base
     :tracks,
     :class_name => 'Track',
     :foreign_key => :album_id,
-    :primary_key => :id
+    :primary_key => :id,
+    dependent: :destroy
   )
+  #deleting an album also deletes its tracks
 end

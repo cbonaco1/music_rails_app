@@ -14,10 +14,15 @@ Album.destroy_all
 album1 = Album.create!(band_id: band1.id, name:'The Beatles', album_type: 'studio')
 album2 = Album.create!(band_id: band1.id, name:'Second Beatles', album_type: 'live')
 album3 = Album.create!(band_id: band2.id, name:'Greatest Hits', album_type: 'studio')
-album4 = Album.create!(band_id: band2.id, name:'More Hits', album_type: 'live')
 album5 = Album.create!(band_id: band3.id, name:'The One', album_type: 'live')
+album4 = Album.create!(band_id: band2.id, name:'More Hits', album_type: 'live')
 
 Track.destroy_all
 track1 = Track.create!(album_id: album1.id, name: 'Tomorrow Never Knows', lyrics:'Sone one lyrics', track_type: 'regular')
 track2 = Track.create!(album_id: album1.id, name: 'Hey Jude',lyrics:'Song two lyrics', track_type: 'regular')
 track3 = Track.create!(album_id: album1.id, name: 'Revolution',lyrics:'Song three lyrics', track_type: 'regular')
+
+
+track3 = Track.create!(album_id: album4.id, name: 'Revolution',lyrics:'Song three lyrics', track_type: 'regular')
+track3 = Track.create!(album_id: album4.id, name: 'Revolution',lyrics:'Song three lyrics', track_type: 'regular')
+track3 = Track.create!(album_id: album4.id, name: 'Revolution',lyrics:'Song three lyrics', track_type: 'regular')
