@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def index
+
+  end
+
   def new
     @user = User.new
   end
@@ -10,7 +14,6 @@ class UsersController < ApplicationController
       login_user(@user)
       redirect_to user_url(@user)
     else
-      fail
       render :new
     end
   end
