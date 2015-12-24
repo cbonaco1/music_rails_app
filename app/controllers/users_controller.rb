@@ -14,7 +14,9 @@ class UsersController < ApplicationController
       login_user(@user)
       redirect_to user_url(@user)
     else
-      render :new
+      flash[:errors] = @user.errors.full_messages
+       redirect_to new_user_url
+      # render :new
     end
   end
 

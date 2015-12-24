@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
       login_user(user)
       redirect_to user_url(user)
     else
+      flash[:errors] = ["Incorrect Username/Password"]
       redirect_to new_session_url
     end
   end
