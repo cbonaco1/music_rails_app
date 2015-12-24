@@ -1,0 +1,29 @@
+<h3>Add a New Album</h3>
+
+<form action="<%= albums_url %>" method="post">
+  <label>Name:
+    <input type="text" name="album[name]" value=""><br><br>
+  </label>
+
+  <label>Band:
+    <select name="album[band_id]">
+      <option></option>
+      <% Band.all.each do |band| %>
+      <option value="<%= band.id %>"><%= band.name %></option>
+      <% end %>
+    </select><br><br>
+  </label>
+
+  <label>Type:
+    <% Album::ALBUM_TYPES.each do |type_of_album| %>
+      <input type="radio"
+            name="album[album_type]"
+            value="<%= type_of_album %>">
+            <%= type_of_album.upcase %>
+    <% end %>
+  </label><br><br>
+
+  <button>Add Album</button>
+
+
+</form>
