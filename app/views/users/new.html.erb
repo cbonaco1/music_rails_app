@@ -1,12 +1,13 @@
 <h2>New User Form</h2>
 
 <form action="<%= users_url %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <label>Email:
-    <input type="text" name="user[:email]" value="<%= @user.email %>">
+    <input type="text" name="user[email]" value="<%= @user.email %>">
   </label>
 
   <label>Password:
-    <input type="password" name="user[:password]" value="">
+    <input type="password" name="user[password]" value="">
   </label>
 
   <button>Submit</button>
