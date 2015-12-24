@@ -1,6 +1,6 @@
 class Album < ActiveRecord::Base
-  ALBUM_TYPES = %w(live, studio)
-  
+  ALBUM_TYPES = %w(live studio)
+
   validates :band_id, presence: true
   validates :album_type, inclusion: { in: ALBUM_TYPES }
 
