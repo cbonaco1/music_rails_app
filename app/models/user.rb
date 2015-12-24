@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
     self.session_token = User.generate_session_token
     self.save!
     # session[:session_token] = nil
+    self.session_token
   end
 
   def password=(password)
