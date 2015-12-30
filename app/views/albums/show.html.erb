@@ -1,0 +1,19 @@
+<h2>Album Info</h2>
+
+<table>
+  <tr>
+    <th>Name:</th>
+    <td><%= @album.name %></td>
+  </tr>
+  <tr>
+    <th>Band:</th>
+    <td><%= @album.band.name %></td>
+  </tr>
+  <tr>
+    <th>Type:</th>
+    <td><%= @album.album_type.upcase %></td>
+  </tr>
+</table>
+
+<%= link_to "Edit Album", edit_album_url(@album) %><br>
+<%= link_to "All Albums", albums_url %>

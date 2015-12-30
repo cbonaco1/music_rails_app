@@ -1,0 +1,44 @@
+<% if @album.persisted? %>
+  <% action_name = album_url(@album) %>
+  <% method_name = "patch" %>
+  <% button_name = "Update Album" %>
+<% else %>
+  <% action_name = albums_url %>
+  <% method_name = "post" %>
+  <% button_name = "Add Album" %>
+<% end %>
+
+<form action="<%= action_name %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="<%= method_name %>">
+
+  <label>Name:
+    <input type="text" name="album[name]" value="<%= @album.name %>" autofocus><br><br>
+  </label>
+
+  <label>Band:
+    <select name="album[band_id]">
+      <option></option>
+      <% Band.all.each do |band| %>
+        <option value="<%= band.id %>"
+            <%= "selected" if band == @album.band %>>
+            <%= band.name %>
+        </option>
+      <% end %>
+    </select><br><br>
+  </label>
+
+  <label>Type:
+    <% Album::ALBUM_TYPES.each do |type_of_album| %>
+      <input type="radio"
+            name="album[album_type]"
+            value="<%= type_of_album %>"
+            <%= "checked" if type_of_album == @album.album_type%>>
+            <%= type_of_album.upcase %>
+    <% end %>
+  </label><br><br>
+
+  <button><%= button_name %></button>
+
+
+</form>

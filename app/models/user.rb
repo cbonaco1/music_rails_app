@@ -12,6 +12,12 @@ class User < ActiveRecord::Base
   validates :password_digest, presence: { message: "Password cannot be blank"}
   validates :password, length: { minimum: 6, allow_nil: true }
 
+  #Initially forgot this validation
+  #Had it as a constraint, which prevented duplicate emails, but
+  #produced a much uglier error. The validation allows errors to be printed in
+  #flash
+  validates :email, uniqueness: true
+
   def self.generate_session_token
     SecureRandom.urlsafe_base64
   end
@@ -25,6 +31,7 @@ class User < ActiveRecord::Base
   #instance variable @password is used
   #to perform the validation on it, since it is not a column in DB
   #The attr_reader allows the validation to read the value
+  #This is mainly for adding new users
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)

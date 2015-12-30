@@ -1,5 +1,7 @@
 class AlbumsController < ApplicationController
 
+  before_action :ensure_logged_in
+
   def index
     @albums = Album.all.order(:name)
   end
@@ -23,7 +25,18 @@ class AlbumsController < ApplicationController
   end
 
   def edit
-    @album = @album = Album.find(params[:id])
+    @album = Album.find(params[:id])
+  end
+
+  def update
+    @album = Album.find(params[:id])
+    @album.update_attributes(album_params)
+    if @album.save
+      redirect_to album_url(@album)
+    else
+      flash.now[:errors] = @album.errors.full_messages
+      render :new
+    end
   end
 
 
